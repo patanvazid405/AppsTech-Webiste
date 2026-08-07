@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight, CalendarCheck2, ShieldCheck } from 'lucide-react';
+import { ArrowRight, CalendarCheck2 } from 'lucide-react';
 import Reveal from '../components/Reveal';
 import Counter from '../components/Counter';
 import Icon from '../components/Icon';
@@ -10,6 +10,7 @@ import ProductPanel from '../components/ProductPanel';
 import TestimonialMarquee from '../components/TestimonialMarquee';
 import Faq from '../components/Faq';
 import ZohoIcon from '../components/ZohoIcon';
+import ZohoBadge from '../components/ZohoBadge';
 import { STATS, SERVICES, PRODUCTS, TRUST_LOGOS, WHY_US } from '../data/content';
 
 export default function Home() {
@@ -64,7 +65,7 @@ export default function Home() {
 
           <Reveal delay={0.2} className="hidden lg:block">
             <div className="rounded-3xl border border-edge/10 bg-surface/80 backdrop-blur-xl p-7 shadow-card relative">
-              <div className="flex items-center gap-2 text-[13px] font-bold text-ink mb-5"><ShieldCheck size={16} className="text-teal-500" /> Zoho Authorized Partner</div>
+              <ZohoBadge height={44} className="mb-6 rounded-xl overflow-hidden shadow-sm" />
               <div className="grid grid-cols-3 gap-2.5 mb-6">
                 {['crm', 'one', 'creator', 'books', 'people', 'analytics'].map((id) => (
                   <div key={id} className="aspect-square rounded-xl bg-surface2 border border-edge/10 p-2.5 flex items-center justify-center"><ZohoIcon id={id} /></div>
