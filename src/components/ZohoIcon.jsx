@@ -1,9 +1,10 @@
-import { Link2, BookOpen, Users, Gem, BarChart3, ListChecks, Headphones, LayoutGrid } from 'lucide-react';
+import { BookOpen, Users, Gem, BarChart3, ListChecks, Headphones, LayoutGrid } from 'lucide-react';
+import { CrmMark } from './zohoMarks';
 
 // Crisp vector product marks (replaces low-res raster icons) — a colored
 // rounded-square in each product's brand color with a representative glyph.
 const PRODUCTS = {
-  crm: { bg: '#2F6FE0', Icon: Link2 },
+  crm: { bg: '#006EB9', Icon: CrmMark },
   books: { bg: '#1690D0', Icon: BookOpen },
   one: { bg: null, Icon: LayoutGrid }, // rendered specially below
   people: { bg: '#1AA05E', Icon: Users },
