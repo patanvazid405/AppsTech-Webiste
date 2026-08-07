@@ -11,6 +11,7 @@ import TestimonialMarquee from '../components/TestimonialMarquee';
 import Faq from '../components/Faq';
 import ZohoIcon from '../components/ZohoIcon';
 import ZohoBadge from '../components/ZohoBadge';
+import ZohoLogoStrip from '../components/ZohoLogoStrip';
 import { STATS, SERVICES, PRODUCTS, TRUST_LOGOS, WHY_US } from '../data/content';
 
 export default function Home() {
@@ -132,6 +133,7 @@ export default function Home() {
             <Reveal delay={0.08}><h2 className="font-display text-3xl sm:text-4xl font-extrabold text-ink mt-4">The complete <span className="text-gradient">Zoho ecosystem</span></h2></Reveal>
             <Reveal delay={0.14}><p className="text-ink2 mt-4">Deep expertise across every Zoho product — not just CRM.</p></Reveal>
           </div>
+          <div className="mb-14"><ZohoLogoStrip /></div>
           <Reveal>
             <div className="flex flex-wrap gap-3 mb-12">
               {PRODUCTS.slice(0, 4).map((p) => (

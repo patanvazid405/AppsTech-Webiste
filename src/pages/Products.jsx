@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import PageHero from '../components/PageHero';
 import ProductPanel from '../components/ProductPanel';
 import ZohoIcon from '../components/ZohoIcon';
+import ZohoLogoStrip from '../components/ZohoLogoStrip';
 import Button from '../components/Button';
 import Reveal from '../components/Reveal';
 import { PRODUCTS } from '../data/content';
@@ -21,6 +22,7 @@ export default function Products() {
 
       <section className="pb-24 px-5 sm:px-8 bg-surface/40 border-y border-edge/10">
         <div className="mx-auto max-w-[1200px] pt-4">
+          <div className="mb-14"><ZohoLogoStrip /></div>
           <Reveal>
             <div className="flex flex-wrap gap-3 mb-14">
               {PRODUCTS.map((p) => (
