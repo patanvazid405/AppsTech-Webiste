@@ -3,6 +3,9 @@ import erpLogo from '../assets/zoho/erp.png';
 import booksLogo from '../assets/zoho/books.png';
 import oneLogo from '../assets/zoho/one.png';
 import creatorLogo from '../assets/zoho/creator.png';
+import deskLogo from '../assets/zoho/desk.png';
+import projectsLogo from '../assets/zoho/projects.png';
+import analyticsLogo from '../assets/zoho/analytics.png';
 import { CrmMark } from './zohoMarks';
 import Reveal from './Reveal';
 
@@ -13,13 +16,16 @@ const LOGOS = [
   { id: 'people', src: peopleLogo },
   { id: 'creator', src: creatorLogo },
   { id: 'erp', src: erpLogo },
+  { id: 'desk', src: deskLogo },
+  { id: 'projects', src: projectsLogo },
+  { id: 'analytics', src: analyticsLogo },
 ];
 
 export default function ZohoLogoStrip() {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
       {LOGOS.map((l, i) => (
-        <Reveal key={l.id} delay={i * 0.05}>
+        <Reveal key={l.id} delay={i * 0.04}>
           <div className="h-24 rounded-2xl bg-white border border-black/5 flex items-center justify-center px-5 shadow-sm">
             {l.custom ? (
               <div className="flex items-center gap-2.5">
