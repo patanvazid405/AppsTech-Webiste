@@ -11,6 +11,40 @@ const {useState,useEffect,useRef,useCallback}=React;
 // ─── LOGO ────────────────────────────────────────────────────────────────────
 const LogoMark=()=><svg width="36" height="36" viewBox="0 0 64 64" fill="none"><circle cx="38" cy="18" r="9" fill="#2ECC71"/><path d="M31 24 Q20 30 19 43" stroke="#2ECC71" strokeWidth="7" strokeLinecap="round"/><circle cx="46" cy="38" r="9" fill="#3B8EF0"/><path d="M38 37 Q28 32 19 38" stroke="#3B8EF0" strokeWidth="7" strokeLinecap="round"/><circle cx="22" cy="48" r="9" fill="#F5C518"/><path d="M28 43 Q34 33 36 22" stroke="#F5C518" strokeWidth="7" strokeLinecap="round"/></svg>;
 
+// ─── LINE ICON SET ───────────────────────────────────────────────────────────
+// Replaces emoji glyphs with a consistent stroke-icon system (Feather-style).
+const ICONS_D = {
+  zap:<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>,
+  target:<><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></>,
+  factory:<><path d="M2 21V12l5 3v-3l5 3V9l5 3V6l5 3v12z"/><line x1="2" y1="21" x2="22" y2="21"/></>,
+  wallet:<><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></>,
+  bot:<><rect x="4" y="8" width="16" height="12" rx="2"/><circle cx="9" cy="14" r="1.4"/><circle cx="15" cy="14" r="1.4"/><path d="M12 8V4"/><circle cx="12" cy="3" r="1"/></>,
+  wrench:<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"/>,
+  users:<><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></>,
+  shield:<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>,
+  cloud:<path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>,
+  hospital:<><rect x="4" y="3" width="16" height="18" rx="1"/><line x1="12" y1="8" x2="12" y2="14"/><line x1="9" y1="11" x2="15" y2="11"/></>,
+  cart:<><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></>,
+  truck:<><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.3"/><circle cx="18.5" cy="18.5" r="2.3"/></>,
+  building:<><rect x="3" y="3" width="18" height="18" rx="1"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></>,
+  cap:<><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></>,
+  briefcase:<><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></>,
+  pill:<><path d="M10.5 20.5 3.5 13.5a5 5 0 0 1 7-7l7 7a5 5 0 0 1-7 7z"/><line x1="8.5" y1="8.5" x2="15.5" y2="15.5"/></>,
+  rocket:<><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></>,
+  globe:<><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/><path d="M12 3a13.9 13.9 0 0 1 3.6 9 13.9 13.9 0 0 1-3.6 9 13.9 13.9 0 0 1-3.6-9A13.9 13.9 0 0 1 12 3z"/></>,
+  award:<><circle cx="12" cy="8" r="6.5"/><polyline points="8.2 13.9 7 22 12 19 17 22 15.8 13.9"/></>,
+  star:<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>,
+  chart:<><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></>,
+  phone:<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>,
+  mail:<><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></>,
+  chat:<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>,
+};
+const Icon=({name,size=24,strokeWidth=1.7,color='currentColor'})=>{
+  const d=ICONS_D[name];
+  if(!d)return null;
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={{display:'inline-block',verticalAlign:'middle'}}>{d}</svg>;
+};
+
 // ─── ZOHO ICONS ──────────────────────────────────────────────────────────────
 // ZI icons built from window._ICONS (loaded outside Babel)
 const ZI = {};
@@ -123,15 +157,15 @@ const ProcLine=()=>{
 
 // ─── DATA ────────────────────────────────────────────────────────────────────
 const SVCS=[
-  {ico:'⚡',t:'Zoho One Implementation',d:'End-to-end setup of 45+ Zoho apps — Sales, Finance, HR, Operations — unified on one platform.',feat:true},
-  {ico:'🎯',t:'Zoho CRM Customization',d:'Custom pipelines, workflows, dashboards. Deep integrations with WhatsApp, Gmail, LinkedIn.'},
-  {ico:'🏭',t:'Zoho ERP for Manufacturing',d:'BOM, work orders, production costing, multi-warehouse inventory, and supply chain.'},
-  {ico:'💰',t:'Zoho Finance Suite',d:'GST-compliant accounting, automated invoicing, multi-currency inventory dashboards.'},
-  {ico:'🤖',t:'Workflow Automation & AI',d:'Eliminate manual work with Deluge scripting, intelligent automations, and Zia AI.'},
-  {ico:'🔧',t:'Zoho Creator Custom Apps',d:'Low-code custom apps for unique business processes — 550+ integrations, mobile-ready.'},
-  {ico:'👥',t:'HR & People Solutions',d:'Zoho People and Payroll — automate hiring, attendance, leave, payroll, and compliance.'},
-  {ico:'🛡️',t:'Managed Services',d:'Ongoing support, quarterly audits, and continuous optimization with dedicated AMC plans.'},
-  {ico:'☁️',t:'Migrations & Integrations',d:'Migrate from Salesforce, HubSpot, Tally, SAP. API connections to payment gateways.'},
+  {ico:'zap',t:'Zoho One Implementation',d:'End-to-end setup of 45+ Zoho apps — Sales, Finance, HR, Operations — unified on one platform.',feat:true},
+  {ico:'target',t:'Zoho CRM Customization',d:'Custom pipelines, workflows, dashboards. Deep integrations with WhatsApp, Gmail, LinkedIn.'},
+  {ico:'factory',t:'Zoho ERP for Manufacturing',d:'BOM, work orders, production costing, multi-warehouse inventory, and supply chain.'},
+  {ico:'wallet',t:'Zoho Finance Suite',d:'GST-compliant accounting, automated invoicing, multi-currency inventory dashboards.'},
+  {ico:'bot',t:'Workflow Automation & AI',d:'Eliminate manual work with Deluge scripting, intelligent automations, and Zia AI.'},
+  {ico:'wrench',t:'Zoho Creator Custom Apps',d:'Low-code custom apps for unique business processes — 550+ integrations, mobile-ready.'},
+  {ico:'users',t:'HR & People Solutions',d:'Zoho People and Payroll — automate hiring, attendance, leave, payroll, and compliance.'},
+  {ico:'shield',t:'Managed Services',d:'Ongoing support, quarterly audits, and continuous optimization with dedicated AMC plans.'},
+  {ico:'cloud',t:'Migrations & Integrations',d:'Migrate from Salesforce, HubSpot, Tally, SAP. API connections to payment gateways.'},
 ];
 
 const PRODS=[
@@ -176,14 +210,14 @@ const TESTIMONIALS=[
 ];
 
 const INDS=[
-  {ico:'🏭',t:'Manufacturing',d:'BOM, work orders, production costing, multi-warehouse inventory.'},
-  {ico:'🏥',t:'Healthcare',d:'Patient management, appointment workflows, regulatory compliance.'},
-  {ico:'🛒',t:'Retail & E-Commerce',d:'Omnichannel inventory, order management, customer loyalty.'},
-  {ico:'🚚',t:'Logistics',d:'Order-to-cash automation, credit control, margin tracking.'},
-  {ico:'🏗️',t:'Construction',d:'Project costs, vendor management, site workforce, compliance.'},
-  {ico:'🎓',t:'Education',d:'Student lifecycle, fee collection, attendance, parent portals.'},
-  {ico:'💼',t:'Professional Services',d:'Client management, project billing, utilization dashboards.'},
-  {ico:'💊',t:'Pharma & Life Sciences',d:'Regulatory tracking, batch compliance, SFA for pharma.'},
+  {ico:'factory',t:'Manufacturing',d:'BOM, work orders, production costing, multi-warehouse inventory.'},
+  {ico:'hospital',t:'Healthcare',d:'Patient management, appointment workflows, regulatory compliance.'},
+  {ico:'cart',t:'Retail & E-Commerce',d:'Omnichannel inventory, order management, customer loyalty.'},
+  {ico:'truck',t:'Logistics',d:'Order-to-cash automation, credit control, margin tracking.'},
+  {ico:'building',t:'Construction',d:'Project costs, vendor management, site workforce, compliance.'},
+  {ico:'cap',t:'Education',d:'Student lifecycle, fee collection, attendance, parent portals.'},
+  {ico:'briefcase',t:'Professional Services',d:'Client management, project billing, utilization dashboards.'},
+  {ico:'pill',t:'Pharma & Life Sciences',d:'Regulatory tracking, batch compliance, SFA for pharma.'},
 ];
 
 // ─── NAVBAR ──────────────────────────────────────────────────────────────────
@@ -348,12 +382,12 @@ const HomePage=({nav})=>{
     {/* STATS */}
     <div className="stats-full">
       <div className="stats-g">
-        {[{ico:'🚀',n:500,s:'+',l:'Projects Delivered',sub:'15+ industries'},
-          {ico:'🌍',n:200,s:'+',l:'Clients Worldwide',sub:'3 continents, 6 countries'},
-          {ico:'🎓',n:10,s:'+',l:'Years Experience',sub:'Est. 2014'},
-          {ico:'⭐',n:98,s:'%',l:'Client Retention',sub:'4.9 / 5.0 avg rating'}].map(s=>(
+        {[{ico:'rocket',n:500,s:'+',l:'Projects Delivered',sub:'15+ industries'},
+          {ico:'globe',n:200,s:'+',l:'Clients Worldwide',sub:'3 continents, 6 countries'},
+          {ico:'award',n:10,s:'+',l:'Years Experience',sub:'Est. 2014'},
+          {ico:'star',n:98,s:'%',l:'Client Retention',sub:'4.9 / 5.0 avg rating'}].map(s=>(
           <div key={s.l} className="stat-c">
-            <span className="stat-ico">{s.ico}</span>
+            <span className="stat-ico"><Icon name={s.ico} size={28} strokeWidth={1.6}/></span>
             <span className="stat-n"><Counter to={s.n} suffix={s.s}/></span>
             <div className="stat-l">{s.l}</div>
             <div className="stat-s">{s.sub}</div>
@@ -372,7 +406,7 @@ const HomePage=({nav})=>{
           <div key={s.t} className={`bcard${s.feat?' feat':''}${i===1||i===2?' wide':''}`} onClick={()=>nav('services')}>
             <div className="bcard-inner">
               <span className="bcard-num">{String(i+1).padStart(2,'0')}</span>
-              <div className="bico">{s.ico}</div>
+              <div className="bico"><Icon name={s.ico} size={24} strokeWidth={1.7}/></div>
               <h3>{s.t}</h3>
               <p>{s.d}</p>
               <span className="bcard-link">Explore → </span>
@@ -441,7 +475,7 @@ const ServicesPage=({nav})=>(
           <div key={s.t} className={`bcard${i===0?' feat':''}`} onClick={()=>nav('contact')}>
             <div className="bcard-inner">
               <span className="bcard-num">{String(i+1).padStart(2,'0')}</span>
-              <div className="bico">{s.ico}</div>
+              <div className="bico"><Icon name={s.ico} size={24} strokeWidth={1.7}/></div>
               <h3>{s.t}</h3>
               <p>{s.d}</p>
               <span className="bcard-link">Get started →</span>
@@ -457,12 +491,12 @@ const ServicesPage=({nav})=>(
           <FI delay={.1}><h2 className="h2">We Don't Just Implement.<br/><span className="grd">We Transform.</span></h2></FI>
           <FI delay={.2}><p style={{color:'var(--t2)',marginBottom:0,lineHeight:1.75,fontSize:16}}>Unlike generic IT vendors, we bring certified Zoho expertise, proven playbooks, and a genuine ROI-first approach.</p></FI>
           <div className="why-pts" style={{marginTop:36}}>
-            {[{ico:'🚀',t:'3× Faster Implementation',d:'Pre-built frameworks cut implementation from months to weeks.'},
-              {ico:'🎓',t:'Certified Domain Experts',d:'Every consultant holds Zoho certifications backed by real-world experience.'},
-              {ico:'📊',t:'ROI-Focused Delivery',d:'We tie every implementation to measurable KPIs from day one.'},
-              {ico:'🌍',t:'Global, Local Expertise',d:'Offices in USA, India, UAE, UK & Germany.'}].map((p,i)=>(
+            {[{ico:'rocket',t:'3× Faster Implementation',d:'Pre-built frameworks cut implementation from months to weeks.'},
+              {ico:'award',t:'Certified Domain Experts',d:'Every consultant holds Zoho certifications backed by real-world experience.'},
+              {ico:'chart',t:'ROI-Focused Delivery',d:'We tie every implementation to measurable KPIs from day one.'},
+              {ico:'globe',t:'Global, Local Expertise',d:'Offices in USA, India, UAE, UK & Germany.'}].map((p,i)=>(
               <FI key={p.t} delay={i*.1}>
-                <div className="why-pt"><div className="why-pt-ic">{p.ico}</div><div><h4>{p.t}</h4><p>{p.d}</p></div></div>
+                <div className="why-pt"><div className="why-pt-ic"><Icon name={p.ico} size={20} strokeWidth={1.8} color="#fff"/></div><div><h4>{p.t}</h4><p>{p.d}</p></div></div>
               </FI>
             ))}
           </div>
@@ -520,7 +554,7 @@ const IndustriesPage=({nav})=>(
     <section className="sec sec-dk">
       <div className="ind-g">{INDS.map(ind=>(
         <div key={ind.t} className="ind-c">
-          <div className="ind-ico">{ind.ico}</div>
+          <div className="ind-ico"><Icon name={ind.ico} size={26} strokeWidth={1.6}/></div>
           <h3>{ind.t}</h3><p>{ind.d}</p>
           <span className="ind-badge">Zoho Certified ✓</span>
         </div>
@@ -580,12 +614,12 @@ const AboutPage=({nav})=>(
 // ─── BLOG PAGE ────────────────────────────────────────────────────────────────
 const BlogPage=({nav})=>{
   const posts=[
-    {ico:'🏭',tag:'ERP Guide',t:'The Complete Guide to Zoho ERP for Indian Manufacturing Companies',ex:'A comprehensive walkthrough of implementing Zoho One as a full ERP — covering BOM, production, inventory, finance, and HR.',meta:'12 min · June 2025',ft:true},
-    {ico:'🎯',tag:'CRM',t:'Zoho CRM vs Salesforce: Which is Right for Your Business?',meta:'5 min · May 2025',ft:false},
-    {ico:'⚡',tag:'Automation',t:'10 Zoho Workflows That Save 20 Hours a Week',meta:'8 min · April 2025',ft:false},
-    {ico:'💰',tag:'Finance',t:'GST Automation with Zoho Books: Complete 2025 Guide',meta:'10 min · March 2025',ft:false},
-    {ico:'👥',tag:'HR',t:'Zoho People Implementation: Common Mistakes to Avoid',meta:'6 min · Feb 2025',ft:false},
-    {ico:'📊',tag:'Analytics',t:'Building Executive Dashboards in Zoho Analytics',meta:'7 min · Jan 2025',ft:false},
+    {ico:'factory',tag:'ERP Guide',t:'The Complete Guide to Zoho ERP for Indian Manufacturing Companies',ex:'A comprehensive walkthrough of implementing Zoho One as a full ERP — covering BOM, production, inventory, finance, and HR.',meta:'12 min · June 2025',ft:true},
+    {ico:'target',tag:'CRM',t:'Zoho CRM vs Salesforce: Which is Right for Your Business?',meta:'5 min · May 2025',ft:false},
+    {ico:'zap',tag:'Automation',t:'10 Zoho Workflows That Save 20 Hours a Week',meta:'8 min · April 2025',ft:false},
+    {ico:'wallet',tag:'Finance',t:'GST Automation with Zoho Books: Complete 2025 Guide',meta:'10 min · March 2025',ft:false},
+    {ico:'users',tag:'HR',t:'Zoho People Implementation: Common Mistakes to Avoid',meta:'6 min · Feb 2025',ft:false},
+    {ico:'chart',tag:'Analytics',t:'Building Executive Dashboards in Zoho Analytics',meta:'7 min · Jan 2025',ft:false},
   ];
   return(<div className="page">
     <div className="phero">
@@ -597,7 +631,7 @@ const BlogPage=({nav})=>{
       <div className="blog-g">
         {posts.slice(0,3).map(p=>(
           <div key={p.t} className={`blog-c${p.ft?' ft':''}`}>
-            <div className="blog-thumb"><span className="blog-ico">{p.ico}</span></div>
+            <div className="blog-thumb"><span className="blog-ico"><Icon name={p.ico} size={40} strokeWidth={1.4}/></span></div>
             <div className="blog-body">
               <span className="blog-tag">{p.tag}</span>
               <h3>{p.t}</h3>
@@ -610,7 +644,7 @@ const BlogPage=({nav})=>{
       <div className="blog-g" style={{marginTop:16}}>
         {posts.slice(3).map(p=>(
           <div key={p.t} className="blog-c">
-            <div className="blog-thumb" style={{height:120}}><span className="blog-ico">{p.ico}</span></div>
+            <div className="blog-thumb" style={{height:120}}><span className="blog-ico"><Icon name={p.ico} size={40} strokeWidth={1.4}/></span></div>
             <div className="blog-body">
               <span className="blog-tag">{p.tag}</span>
               <h3>{p.t}</h3>
@@ -639,8 +673,8 @@ const ContactPage=({nav})=>{
           <FI><div className="tag">Get in Touch</div>
           <h2 className="h2" style={{marginBottom:18}}>Ready to <span className="grd">Transform?</span></h2>
           <p style={{color:'var(--t2)',marginBottom:36,lineHeight:1.75,fontSize:15}}>Our certified consultants respond within 2 business hours. No sales pitch — just an honest conversation about how we can help.</p></FI>
-          {[{ico:'📞',l:'India',v:'+91 8197905105'},{ico:'📞',l:'USA',v:'+1 281 609 3093'},{ico:'✉️',l:'Email',v:'viswanath.alikonda@appstechsoft.com'},{ico:'💬',l:'WhatsApp',v:'+91 8197905105'}].map(m=>(
-            <div key={m.l} className="cm"><div className="cm-ic">{m.ico}</div><div><div className="cm-l">{m.l}</div><div className="cm-v">{m.v}</div></div></div>
+          {[{ico:'phone',l:'India',v:'+91 8197905105'},{ico:'phone',l:'USA',v:'+1 281 609 3093'},{ico:'mail',l:'Email',v:'viswanath.alikonda@appstechsoft.com'},{ico:'chat',l:'WhatsApp',v:'+91 8197905105'}].map(m=>(
+            <div key={m.l+m.v} className="cm"><div className="cm-ic"><Icon name={m.ico} size={18} strokeWidth={1.8}/></div><div><div className="cm-l">{m.l}</div><div className="cm-v">{m.v}</div></div></div>
           ))}
           <div style={{marginTop:28}}>
             {['🇮🇳 Bangalore','🇮🇳 Nellore','🇺🇸 Houston TX','🇦🇪 Abu Dhabi','🇬🇧 Liverpool','🇩🇪 Munich'].map(l=><span key={l} className="lbadge">{l}</span>)}
