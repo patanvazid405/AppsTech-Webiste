@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, CalendarCheck2 } from 'lucide-react';
 import Reveal from '../components/Reveal';
 import Counter from '../components/Counter';
@@ -113,12 +114,12 @@ export default function Home() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {SERVICES.map((s, i) => (
               <Reveal key={s.title} delay={(i % 3) * 0.06} className={s.feat ? 'sm:col-span-2 lg:col-span-1' : ''}>
-                <a href="#/services" className={`group block h-full rounded-2xl border p-7 transition-all duration-300 hover:-translate-y-1 ${s.feat ? 'border-brand-500/30 bg-brand-500/[.06]' : 'border-edge/10 bg-surface hover:border-edge/25'}`}>
+                <Link to={`/services#${s.slug}`} className={`group block h-full rounded-2xl border p-7 transition-all duration-300 hover:-translate-y-1 ${s.feat ? 'border-brand-500/30 bg-brand-500/[.06]' : 'border-edge/10 bg-surface hover:border-edge/25'}`}>
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-500/15 to-teal-500/10 border border-edge/10 flex items-center justify-center text-brand-400 mb-5 group-hover:scale-105 transition-transform"><Icon name={s.icon} size={22} /></div>
                   <h3 className="font-display font-bold text-lg text-ink mb-2">{s.title}</h3>
                   <p className="text-[13.5px] text-ink2 leading-relaxed">{s.desc}</p>
                   <span className="inline-flex items-center gap-1 text-[13px] font-semibold text-brand-400 mt-5">Explore <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" /></span>
-                </a>
+                </Link>
               </Reveal>
             ))}
           </div>

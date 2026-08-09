@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import PageHero from '../components/PageHero';
 import ProductPanel from '../components/ProductPanel';
@@ -9,7 +10,14 @@ import Reveal from '../components/Reveal';
 import { PRODUCTS } from '../data/content';
 
 export default function Products() {
-  const [tab, setTab] = useState('crm');
+  const [searchParams] = useSearchParams();
+  const requested = searchParams.get('tab');
+  const [tab, setTab] = useState(PRODUCTS.some((p) => p.id === requested) ? requested : 'crm');
+
+  useEffect(() => {
+    if (requested && PRODUCTS.some((p) => p.id === requested)) setTab(requested);
+  }, [requested]);
+
   const product = PRODUCTS.find((p) => p.id === tab) || PRODUCTS[0];
 
   return (

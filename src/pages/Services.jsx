@@ -1,9 +1,11 @@
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import PageHero from '../components/PageHero';
 import Reveal from '../components/Reveal';
 import Icon from '../components/Icon';
 import Eyebrow from '../components/Eyebrow';
 import Button from '../components/Button';
+import useHashScroll from '../hooks/useHashScroll';
 import { SERVICES, WHY_US, BENCHMARKS } from '../data/content';
 
 function MBar({ label, val, pct }) {
@@ -18,6 +20,7 @@ function MBar({ label, val, pct }) {
 }
 
 export default function Services() {
+  useHashScroll();
   return (
     <div>
       <PageHero
@@ -30,7 +33,7 @@ export default function Services() {
         <div className="mx-auto max-w-[1200px] grid sm:grid-cols-2 lg:grid-cols-3 gap-5 py-12">
           {SERVICES.map((s, i) => (
             <Reveal key={s.title} delay={(i % 3) * 0.06} className={s.feat ? 'sm:col-span-2 lg:col-span-1' : ''}>
-              <a href="#/contact" className={`group block h-full rounded-2xl border p-7 transition-all duration-300 hover:-translate-y-1 ${s.feat ? 'border-brand-500/30 bg-brand-500/[.06]' : 'border-edge/10 bg-surface hover:border-edge/25'}`}>
+              <Link id={s.slug} to="/contact" className={`group block h-full rounded-2xl border p-7 transition-all duration-300 hover:-translate-y-1 scroll-mt-24 ${s.feat ? 'border-brand-500/30 bg-brand-500/[.06]' : 'border-edge/10 bg-surface hover:border-edge/25'}`}>
                 <div className="flex items-start justify-between mb-5">
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-500/15 to-teal-500/10 border border-edge/10 flex items-center justify-center text-brand-400 group-hover:scale-105 transition-transform"><Icon name={s.icon} size={22} /></div>
                   <span className="text-xs font-mono text-ink3">{String(i + 1).padStart(2, '0')}</span>
@@ -38,7 +41,7 @@ export default function Services() {
                 <h3 className="font-display font-bold text-lg text-ink mb-2">{s.title}</h3>
                 <p className="text-[13.5px] text-ink2 leading-relaxed">{s.desc}</p>
                 <span className="inline-flex items-center gap-1 text-[13px] font-semibold text-brand-400 mt-5">Get started <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" /></span>
-              </a>
+              </Link>
             </Reveal>
           ))}
         </div>

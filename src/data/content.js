@@ -26,47 +26,56 @@ export const STATS = [
 
 export const SERVICES = [
   {
+    slug: 'zoho-one',
     icon: 'Zap',
     title: 'Zoho One Implementation',
     desc: 'We roll out the full 45+ app Zoho One suite as a single operating system for your business — Sales, Finance, HR and Operations, unified from day one.',
     feat: true,
   },
   {
+    slug: 'zoho-crm',
     icon: 'Target',
     title: 'Zoho CRM Customization',
     desc: 'Pipelines, scoring, and dashboards built around how your sales team actually sells, wired into WhatsApp, Gmail, and LinkedIn.',
   },
   {
+    slug: 'zoho-erp',
     icon: 'Factory',
     title: 'Zoho ERP for Manufacturing',
     desc: 'BOM, work orders, shop-floor costing, and multi-warehouse inventory — production visibility from raw material to dispatch.',
   },
   {
+    slug: 'finance-suite',
     icon: 'Wallet',
     title: 'Zoho Finance Suite',
     desc: 'GST-ready accounting, automated invoicing, and multi-currency inventory reporting that closes your books faster every month.',
   },
   {
+    slug: 'automation-ai',
     icon: 'Bot',
     title: 'Workflow Automation & AI',
     desc: 'Deluge scripting and Zia-powered automation that removes manual busywork from every department, not just sales.',
   },
   {
+    slug: 'zoho-creator',
     icon: 'Wrench',
     title: 'Zoho Creator Custom Apps',
     desc: 'Purpose-built, low-code applications for the processes off-the-shelf software was never built to handle — 550+ integrations, mobile-ready.',
   },
   {
+    slug: 'hr-solutions',
     icon: 'Users',
     title: 'HR & People Solutions',
     desc: 'Zoho People and Payroll configured for hiring, attendance, leave, payroll, and statutory compliance in one self-service portal.',
   },
   {
+    slug: 'managed-services',
     icon: 'ShieldCheck',
     title: 'Managed Services',
     desc: 'Ongoing support, quarterly health audits, and continuous optimization under a dedicated AMC — your Zoho stack never goes stale.',
   },
   {
+    slug: 'migrations-integrations',
     icon: 'CloudCog',
     title: 'Migrations & Integrations',
     desc: 'Clean migrations off Salesforce, HubSpot, Tally, or SAP, plus API connections to payment gateways and third-party systems.',
@@ -172,12 +181,45 @@ export const FAQS = [
 ];
 
 export const BLOG_POSTS = [
-  { icon: 'Factory', tag: 'ERP Guide', title: 'The Complete Guide to Zoho ERP for Indian Manufacturing Companies', excerpt: 'A comprehensive walkthrough of implementing Zoho One as a full ERP — covering BOM, production, inventory, finance, and HR.', meta: '12 min · June 2025', featured: true },
-  { icon: 'Target', tag: 'CRM', title: 'Zoho CRM vs Salesforce: Which Is Right for Your Business?', meta: '5 min · May 2025' },
-  { icon: 'Zap', tag: 'Automation', title: '10 Zoho Workflows That Save 20 Hours a Week', meta: '8 min · April 2025' },
-  { icon: 'Wallet', tag: 'Finance', title: 'GST Automation with Zoho Books: Complete 2025 Guide', meta: '10 min · March 2025' },
-  { icon: 'Users', tag: 'HR', title: 'Zoho People Implementation: Common Mistakes to Avoid', meta: '6 min · Feb 2025' },
-  { icon: 'BarChart3', tag: 'Analytics', title: 'Building Executive Dashboards in Zoho Analytics', meta: '7 min · Jan 2025' },
+  { slug: 'zoho-erp-guide-manufacturing', icon: 'Factory', tag: 'ERP Guide', title: 'The Complete Guide to Zoho ERP for Indian Manufacturing Companies', excerpt: 'A comprehensive walkthrough of implementing Zoho One as a full ERP — covering BOM, production, inventory, finance, and HR.', meta: '12 min · June 2025', featured: true,
+    body: [
+      'Most manufacturers outgrow spreadsheets long before they outgrow Tally or a generic accounting package. The gap usually shows up first on the shop floor: nobody can say, with confidence, what a job actually costs once labor, machine time, and wastage are accounted for.',
+      'Zoho One closes that gap by treating manufacturing as one connected process rather than a set of disconnected tools. Zoho Inventory handles bill-of-materials and multi-warehouse stock; Zoho Books turns that into real job costing and GST-compliant accounting; Zoho CRM and Desk keep the commercial side — quotes, orders, after-sales support — tied to the same customer record.',
+      'The practical starting point is almost never "turn everything on at once." A phased rollout — inventory and BOM first, finance second, HR and CRM third — gives your team room to adopt each piece without a production disruption. Most of our manufacturing clients are fully live within 8–10 weeks using this sequence.',
+      'If you are still running production planning in Excel and reconciling it against Tally at month-end, that reconciliation gap is exactly what a properly configured Zoho ERP removes.',
+    ] },
+  { slug: 'zoho-crm-vs-salesforce', icon: 'Target', tag: 'CRM', title: 'Zoho CRM vs Salesforce: Which Is Right for Your Business?', meta: '5 min · May 2025',
+    body: [
+      'Salesforce and Zoho CRM both do the fundamentals well — pipelines, forecasting, automation, reporting. The real difference shows up in total cost of ownership and time-to-value, not in feature checklists.',
+      'Salesforce is built for organizations that expect to hire a dedicated admin (or a partner on retainer) to maintain heavy customization. Zoho CRM is built so a lean team can configure and adjust it themselves — Blueprint for process automation, Deluge for custom logic, and a native bundle with Books, Desk, and Campaigns without stitching together separate vendor contracts.',
+      'Cost is the other half of the decision. Zoho One bundles CRM with 45+ other applications at a fraction of what Salesforce charges for CRM alone plus its app ecosystem. For companies under roughly 500 employees, that difference usually funds the entire rest of the tech stack.',
+      'The honest recommendation: if your sales process is already highly customized on Salesforce and switching cost is high, stay. If you are choosing a CRM for the first time, or your Salesforce org has become expensive to maintain, Zoho CRM is very likely the better fit.',
+    ] },
+  { slug: 'zoho-automation-workflows', icon: 'Zap', tag: 'Automation', title: '10 Zoho Workflows That Save 20 Hours a Week', meta: '8 min · April 2025',
+    body: [
+      'The highest-leverage automations are rarely the flashy ones. They are the small, repetitive handoffs between departments that nobody questions because "that\'s just how it\'s done."',
+      'A few that consistently return the most time across our implementations: auto-assigning leads by territory the instant they hit CRM, generating and sending GST-compliant invoices the moment a deal closes, syncing new hires from Zoho People straight into payroll without re-entry, auto-escalating support tickets that breach SLA, and triggering low-stock purchase orders directly from Inventory.',
+      'None of these require custom development — they are Deluge scripts and Blueprint workflows configurable inside the apps you already have. The pattern is always the same: find the manual step where someone copies data from one screen to another, and automate exactly that step first.',
+    ] },
+  { slug: 'gst-automation-zoho-books', icon: 'Wallet', tag: 'Finance', title: 'GST Automation with Zoho Books: Complete 2025 Guide', meta: '10 min · March 2025',
+    body: [
+      'GST compliance done manually costs most finance teams several days every month — reconciling GSTR-1 and GSTR-3B, matching e-invoices, chasing mismatched vendor filings. Zoho Books is built to remove nearly all of that manual reconciliation.',
+      'Once configured correctly, Zoho Books auto-generates e-invoices in the required IRN format, tracks input tax credit against vendor filings, and prepares GSTR reports directly from your transaction data rather than a separate export-and-reformat step.',
+      'The configuration details that actually matter: correct HSN/SAC mapping at the item level from day one, place-of-supply rules set up before your first multi-state invoice, and a reconciliation cadence (weekly, not just at filing deadline) so mismatches get caught while they are still small.',
+      'Done right, GST filing goes from a multi-day monthly fire drill to a same-day review-and-submit task.',
+    ] },
+  { slug: 'zoho-people-implementation-mistakes', icon: 'Users', tag: 'HR', title: 'Zoho People Implementation: Common Mistakes to Avoid', meta: '6 min · Feb 2025',
+    body: [
+      'The most common failure mode with Zoho People is not a product limitation — it is rolling out attendance and leave policies before they have been fully documented and agreed internally. If your current leave policy has undocumented exceptions "everyone just knows about," the system will surface every one of those inconsistencies on day one.',
+      'The second common mistake is skipping biometric/attendance integration testing before go-live. Attendance data feeds directly into payroll, so a mismatch here does not stay contained — it shows up as a payroll error weeks later, which is a much more painful place to debug it.',
+      'The fix for both is the same: document policy exceptions and run a full parallel attendance cycle before switching payroll over. It adds a week to the timeline and removes almost all of the post-launch support tickets.',
+    ] },
+  { slug: 'zoho-analytics-executive-dashboards', icon: 'BarChart3', tag: 'Analytics', title: 'Building Executive Dashboards in Zoho Analytics', meta: '7 min · Jan 2025',
+    body: [
+      'Most "executive dashboards" fail for the same reason: they show everything the data team finds interesting instead of the handful of numbers a leadership team actually needs before a decision.',
+      'Zoho Analytics can blend data across CRM, Books, Desk, and Inventory into a single model, which makes it tempting to build one enormous dashboard. Resist that. The dashboards that actually get opened every morning have five metrics or fewer, refresh on a schedule leadership trusts, and answer one question: are we on track this month, yes or no.',
+      'Ask Zia, Analytics\' natural-language query feature, is worth enabling specifically so non-technical stakeholders can ask follow-up questions themselves instead of filing a report request and waiting a week for an answer.',
+    ] },
 ];
 
 export const CONTACT_METHODS = [

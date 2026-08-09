@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import PageHero from '../components/PageHero';
 import Reveal from '../components/Reveal';
 import Icon from '../components/Icon';
@@ -6,7 +7,7 @@ import { BLOG_POSTS } from '../data/content';
 
 function Card({ p, big }) {
   return (
-    <a href="#/blog" className="group block h-full rounded-2xl border border-edge/10 bg-surface overflow-hidden hover:border-edge/25 hover:-translate-y-1 transition-all duration-300">
+    <Link to={`/blog/${p.slug}`} className="group block h-full rounded-2xl border border-edge/10 bg-surface overflow-hidden hover:border-edge/25 hover:-translate-y-1 transition-all duration-300">
       <div className={`flex items-center justify-center bg-gradient-to-br from-surface2 to-void text-brand-400/70 group-hover:text-brand-400 transition-colors ${big ? 'h-44' : 'h-28'}`}>
         <Icon name={p.icon} size={big ? 40 : 30} strokeWidth={1.3} />
       </div>
@@ -19,7 +20,7 @@ function Card({ p, big }) {
           <span className="inline-flex items-center gap-1 text-brand-400 font-semibold">Read <ArrowRight size={11} className="group-hover:translate-x-1 transition-transform" /></span>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }
 

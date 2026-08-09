@@ -26,7 +26,10 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  useEffect(() => { setOpen(false); window.scrollTo({ top: 0, behavior: 'smooth' }); }, [location.pathname]);
+  useEffect(() => {
+    setOpen(false);
+    if (!location.hash) window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location.pathname, location.hash]);
 
   return (
     <>
@@ -35,9 +38,9 @@ export default function Nav() {
       </div>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'glass border-b border-edge/10 py-3' : 'py-5'}`}>
         <div className="mx-auto max-w-[1360px] px-5 sm:px-8 flex items-center justify-between gap-6">
-          <button onClick={() => navigate('/')} className="flex items-center gap-2.5 shrink-0">
-            <Logo size={32} />
-            <span className="font-display font-extrabold text-lg text-ink">{BRAND.name}<em className="not-italic text-brand-400">{BRAND.suffix}</em></span>
+          <button onClick={() => navigate('/')} className="flex items-center gap-3 shrink-0">
+            <Logo size={42} />
+            <span className="font-display font-extrabold text-xl sm:text-2xl text-ink tracking-tight">{BRAND.name}<em className="not-italic text-brand-400">{BRAND.suffix}</em></span>
           </button>
 
           <nav className="hidden lg:flex items-center gap-1">

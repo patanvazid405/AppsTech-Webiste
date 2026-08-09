@@ -5,8 +5,8 @@ import ZohoBadge from './ZohoBadge';
 import { BRAND } from '../data/content';
 
 const COLS = [
-  { title: 'Services', links: [['Zoho One', '/services'], ['Zoho CRM', '/services'], ['Zoho ERP', '/services'], ['Finance Suite', '/services'], ['HR Solutions', '/services'], ['Managed Services', '/services']] },
-  { title: 'Products', links: [['Zoho CRM', '/products'], ['Zoho Books', '/products'], ['Zoho One', '/products'], ['Zoho People', '/products'], ['Zoho Creator', '/products'], ['Zoho Analytics', '/products']] },
+  { title: 'Services', links: [['Zoho One', '/services#zoho-one'], ['Zoho CRM', '/services#zoho-crm'], ['Zoho ERP', '/services#zoho-erp'], ['Finance Suite', '/services#finance-suite'], ['HR Solutions', '/services#hr-solutions'], ['Managed Services', '/services#managed-services']] },
+  { title: 'Products', links: [['Zoho CRM', '/products?tab=crm'], ['Zoho Books', '/products?tab=books'], ['Zoho One', '/products?tab=one'], ['Zoho People', '/products?tab=people'], ['Zoho Creator', '/products?tab=creator'], ['Zoho Analytics', '/products?tab=analytics']] },
   { title: 'Company', links: [['Industries', '/industries'], ['Our Process', '/about'], ['Insights', '/blog'], ['Contact', '/contact']] },
 ];
 
@@ -16,9 +16,9 @@ export default function Footer() {
     <footer className="border-t border-edge/10 bg-surface/40">
       <div className="mx-auto max-w-[1360px] px-5 sm:px-8 py-16 grid grid-cols-2 md:grid-cols-5 gap-10">
         <div className="col-span-2">
-          <Link to="/" className="flex items-center gap-2.5 mb-4">
-            <Logo size={30} />
-            <span className="font-display font-extrabold text-lg text-ink">{BRAND.name}<em className="not-italic text-brand-400">{BRAND.suffix}</em></span>
+          <Link to="/" className="flex items-center gap-3 mb-5">
+            <Logo size={38} />
+            <span className="font-display font-extrabold text-xl text-ink tracking-tight">{BRAND.name}<em className="not-italic text-brand-400">{BRAND.suffix}</em></span>
           </Link>
           <p className="text-sm text-ink2 leading-relaxed max-w-xs mb-5">
             Certified Zoho Authorized Partner transforming businesses through intelligent digital solutions across India, USA, UAE, UK &amp; Germany.
