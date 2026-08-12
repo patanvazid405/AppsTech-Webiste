@@ -36,27 +36,11 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background:
-    radial-gradient(circle at top left, rgba(111,115,242,.18), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(47,217,196,.12), transparent 25%),
-    rgb(var(--void));
+  background: rgb(var(--void));
   color: rgb(var(--ink));
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(circle at center, black 35%, transparent 100%);
-  pointer-events: none;
-  z-index: 0;
 }
 
 #root {
@@ -107,17 +91,6 @@ h1, h2, h3, h4, .font-display {
   isolation: isolate;
 }
 
-.hero-shell::after {
-  content: '';
-  position: absolute;
-  inset: 14% 8% auto auto;
-  width: 26rem;
-  height: 26rem;
-  background: radial-gradient(circle, rgba(111,115,242,.18), transparent 60%);
-  filter: blur(60px);
-  pointer-events: none;
-  z-index: -1;
-}
 
 .soft-card {
   background: linear-gradient(180deg, rgba(17,24,39,0.8), rgba(17,24,39,0.52));
@@ -150,42 +123,26 @@ h1, h2, h3, h4, .font-display {
 }
 
 @keyframes pulse-soft {
-  0%, 100% { box-shadow: 0 0 0 rgba(91,95,239,0), 0 0 0 rgba(47,217,196,0); }
-  50% { box-shadow: 0 0 0 1px rgba(91,95,239,0.12), 0 18px 40px -22px rgba(91,95,239,0.65); }
+  0%, 100% { box-shadow: 0 0 0 rgba(91,95,239,0); }
+  50% { box-shadow: 0 0 0 1px rgba(91,95,239,0.12); }
 }
 
-@keyframes shine {
-  0% { transform: translateX(-140%) skewX(-18deg); }
-  100% { transform: translateX(170%) skewX(-18deg); }
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
 
 .float-soft { animation: float-soft 6s ease-in-out infinite; }
-.glow-pulse { animation: pulse-soft 4s ease-in-out infinite; }
-
-.btn-shine::before {
-  content: '';
-  position: absolute;
-  inset: -35% -15%;
-  background: linear-gradient(120deg, transparent 25%, rgba(255,255,255,0.45) 50%, transparent 75%);
-  transform: translateX(-140%) skewX(-18deg);
-  animation: shine 3.2s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.btn-shine > * {
-  position: relative;
-  z-index: 1;
-}
+.glow-pulse { animation: none; }
 
 .soft-card,
 .stat-cell,
 .kicker-pill {
-  animation: pulse-soft 7s ease-in-out infinite;
+  animation: none;
 }
 
 .soft-card:hover,
 .stat-cell:hover {
-  transform: translateY(-2px);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transform: none;
+  transition: none;
 }
