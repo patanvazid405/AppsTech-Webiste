@@ -48,8 +48,8 @@ export default {
         'grad-mesh': 'radial-gradient(60% 50% at 15% 0%, rgba(111,115,242,.20) 0%, transparent 60%), radial-gradient(50% 40% at 85% 15%, rgba(47,217,196,.14) 0%, transparent 60%)',
       },
       boxShadow: {
-        glow: '0 0 0 1px rgba(111,115,242,.15), 0 8px 40px -8px rgba(91,95,239,.45)',
-        card: '0 1px 0 rgba(255,255,255,.04) inset, 0 20px 50px -25px rgba(0,0,0,.6)',
+        glow: '0 0 0 1px rgba(111,115,242,.18), 0 16px 60px -18px rgba(91,95,239,.7)',
+        card: '0 1px 0 rgba(255,255,255,.04) inset, 0 20px 60px -30px rgba(15, 23, 42, .8)',
       },
       borderRadius: {
         xl2: '1.25rem',

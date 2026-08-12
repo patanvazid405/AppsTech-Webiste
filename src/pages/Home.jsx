@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <div>
       {/* ─── HERO ─────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden pt-32 sm:pt-40 pb-20 sm:pb-28 px-5 sm:px-8">
+      <section className="hero-shell relative overflow-hidden pt-32 sm:pt-40 pb-20 sm:pb-28 px-5 sm:px-8">
         <HeroCanvas />
         <div className="absolute inset-0 bg-grad-mesh pointer-events-none" />
         <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-brand-500/10 blur-[120px] animate-float pointer-events-none" />
@@ -31,20 +31,20 @@ export default function Home() {
         <div className="relative mx-auto max-w-[1360px] grid lg:grid-cols-[1fr_380px] gap-16 items-center">
           <div>
             <Reveal>
-              <div className="inline-flex items-center gap-2 rounded-full border border-edge/15 bg-surface/60 px-4 py-2 text-xs sm:text-[13px] text-ink2 mb-7">
+              <div className="kicker-pill inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-xs sm:text-[13px] text-ink2 mb-7">
                 <span className="w-1.5 h-1.5 rounded-full bg-teal-500 animate-pulse" />
                 Zoho Authorized Partner — Trusted by 200+ Businesses
               </div>
             </Reveal>
             <Reveal delay={0.08}>
-              <h1 className="font-display text-[clamp(2.4rem,6vw,4.4rem)] font-extrabold leading-[1.04] text-ink">
+              <h1 className="font-display text-[clamp(2.55rem,6vw,5rem)] font-extrabold leading-[0.96] text-ink tracking-[-0.06em]">
                 Your Business, Run<br />
                 <span className="text-gradient">Entirely on Zoho.</span>
               </h1>
             </Reveal>
             <Reveal delay={0.16}>
-              <p className="text-ink2 text-lg leading-relaxed mt-6 max-w-[560px]">
-                We're the certified Zoho Authorized Partner that takes you from scattered spreadsheets to one unified system — CRM, Finance, HR and Operations, live and adopted by your team.
+              <p className="text-ink2 text-lg sm:text-[1.2rem] leading-relaxed mt-6 max-w-[620px]">
+                We help businesses replace scattered tools with a single, intelligent operating system — CRM, Finance, HR, and Operations aligned to how your team actually works.
               </p>
             </Reveal>
             <Reveal delay={0.24}>
@@ -54,11 +54,11 @@ export default function Home() {
               </div>
             </Reveal>
             <Reveal delay={0.32}>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mt-14 pt-10 border-t border-edge/10 max-w-[560px]">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-14 pt-10 border-t border-edge/10 max-w-[620px]">
                 {[{ n: 500, s: '+', l: 'PROJECTS' }, { n: 200, s: '+', l: 'CLIENTS' }, { n: 10, s: '+', l: 'YEARS' }, { n: 98, s: '%', l: 'RETENTION' }].map((s) => (
-                  <div key={s.l}>
+                  <div key={s.l} className="stat-cell rounded-2xl px-4 py-4 sm:py-5">
                     <div className="font-display text-2xl sm:text-3xl font-extrabold text-ink"><Counter to={s.n} suffix={s.s} /></div>
-                    <div className="text-[10.5px] tracking-wider text-ink3 mt-1">{s.l}</div>
+                    <div className="text-[10.5px] tracking-[0.18em] text-ink3 mt-1 uppercase">{s.l}</div>
                   </div>
                 ))}
               </div>
@@ -66,11 +66,11 @@ export default function Home() {
           </div>
 
           <Reveal delay={0.2} className="hidden lg:block">
-            <div className="rounded-3xl border border-edge/10 bg-surface/80 backdrop-blur-xl p-7 shadow-card relative">
+            <div className="soft-card glow-pulse rounded-[28px] p-7 relative">
               <ZohoBadge height={44} className="mb-6 rounded-xl overflow-hidden shadow-sm" />
               <div className="grid grid-cols-3 gap-2.5 mb-6">
                 {['crm', 'one', 'creator', 'books', 'people', 'analytics'].map((id) => (
-                  <div key={id} className="aspect-square rounded-xl bg-surface2 border border-edge/10 p-2.5 flex items-center justify-center"><ZohoIcon id={id} /></div>
+                  <div key={id} className="aspect-square rounded-xl bg-surface2 border border-edge/10 p-2.5 flex items-center justify-center transition-transform duration-300 hover:scale-105"><ZohoIcon id={id} /></div>
                 ))}
               </div>
               <div className="text-[11px] text-ink3 border-t border-edge/10 pt-4 mb-2">Global delivery offices in</div>
